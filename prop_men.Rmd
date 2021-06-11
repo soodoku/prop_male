@@ -138,7 +138,7 @@ n_samples = 10^6
 prop_male = rep(NA, n_samples)
 n_kids = rep(0, n_samples)
 pref = runif(n_samples, .1, .7)
-max_kids = as.integer(pref*20)
+max_kids = as.integer(pref*20 + runif(n_samples, .4, 1)*4)
 
 for (i in 1:n_samples){
 
@@ -162,4 +162,5 @@ mean = total_male_kids/total_kids
 print(mean)
 cor(prop_male, pref)
 lm(prop_male ~ pref)
+cor(max_kids, prop_male)
 ```
