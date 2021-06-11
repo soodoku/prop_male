@@ -2,6 +2,19 @@
 
 1. Preference for male children, etc., doesn't affect the aggregate sex ratio
 
+Let there be n families and let the stopping rule be that after the birth of a male child, the family stops procreating. Let p be the probability a male child is born and q = 1 -p
+
+Total male children = p*n + q*p*n + q^2*p*n + ...
+                    = p*n (1 + q + q^2 + ...)
+                    = np/(1 - q)
+
+Total children = n + q*n + q^2*n + ...
+               = n (1 + q + q^2 + ...) 
+               = n/(1 - q)
+
+Prop. Male     = np/(1 - q) * (1 - q)/n
+               = p
+
 2. When families prefer male children but have similar preferences for family size, there is a strong negative correlation between the number of children and the proportion of male children.
 
 3. The preference for male children and the proportion of male children is weakly correlated if people have a preference of not having too many children. But if there is a preference for very large families, e.g., 15 children, the correlation can be non-negligible (though still small). 
