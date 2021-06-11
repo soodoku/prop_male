@@ -1,0 +1,165 @@
+---
+title: "Male Children"
+author: "Gaurav"
+date: "June 10, 2021"
+output: github_document
+---
+
+# Stopping Rule = When I have 60% male kids or 3 kids
+
+```{r}
+set.seed(31415)
+
+n_samples = 10^6
+prop_male = rep(NA, n_samples)
+n_kids = rep(0, n_samples)
+max_kids = 5
+pref = .65
+
+for (i in 1:n_samples){
+
+	p = c()
+
+	kids = 1
+	while (kids <= max_kids){
+		p <- c(p, rbinom(1, 1, .5))
+		n_kids[i] = kids
+		prop_male[i] = mean(p)
+		if (prop_male[i] >= pref){
+			break
+		}
+		kids = kids + 1
+	}
+}
+
+total_male_kids = sum(prop_male*n_kids)
+total_kids = sum(n_kids)
+mean = total_male_kids/total_kids
+print(mean)
+cor(prop_male, n_kids)
+```
+
+# Stopping Rule = When I have 10--70% male kids or 15 kids
+
+```{r}
+set.seed(31415)
+
+n_samples = 10^6
+prop_male = rep(NA, n_samples)
+n_kids = rep(0, n_samples)
+max_kids = 15
+pref = runif(n_samples, .1, .7)
+
+for (i in 1:n_samples){
+
+	p = c()
+
+	kids = 1
+	while (kids <= max_kids){
+		p <- c(p, rbinom(1, 1, .5))
+		n_kids[i] = kids
+		prop_male[i] = mean(p)
+		if (prop_male[i] >= pref[i]){
+			break
+		}
+		kids = kids + 1
+	}
+}
+
+total_male_kids = sum(prop_male*n_kids)
+total_kids = sum(n_kids)
+mean = total_male_kids/total_kids
+print(mean)
+cor(prop_male, pref)
+lm(prop_male ~ pref)
+```
+
+# How does cor(pref, prop_male) vary by max_kids?
+
+```{r}
+# Write a Function
+
+sim_male_kids <- function(n_samples, 
+						  max_kids,
+						  pref) {
+
+   prop_male = rep(NA, n_samples)
+   n_kids = rep(0, n_samples)
+
+   for (i in 1:n_samples){
+
+	p = c()
+
+	kids = 1
+		while (kids <= max_kids){
+			p <- c(p, rbinom(1, 1, .5))
+			n_kids[i] = kids
+			prop_male[i] = mean(p)
+			if (prop_male[i] >= pref[i]){
+				break
+			}	
+		kids = kids + 1
+		}
+  	}
+	
+	total_male_kids = sum(prop_male*n_kids)
+	total_kids = sum(n_kids)
+	mean = total_male_kids/total_kids
+
+	cor_n_kids_male <- cor(n_kids, prop_male)
+	cor_pref <- cor(prop_male, pref)
+	lm_pref  <- summary(lm(prop_male ~ pref))
+
+	return(c(max_kids, mean, cor_n_kids_male, cor_pref, lm_pref$coef[2,1]))
+}
+
+
+set.seed(31415)
+pref = runif(n_samples, .1, .7)
+
+res <- data.frame(max_kids = NA, mean_male = NA, cor_n_kids_prop_male = NA, cor_pref = NA, lm_pref_coef = NA)
+k = 1
+for(max_kids in 3:10) {
+	res[k, ] <- sim_male_kids(n_samples = 10^6, max_kids = max_kids, pref = pref)
+	k = k + 1
+}
+
+res
+```
+
+# What Happens If We Vary Preference for Large Family With Preference for Male Kids?
+
+```{r}
+# Write a Function
+
+set.seed(31415)
+
+n_samples = 10^6
+prop_male = rep(NA, n_samples)
+n_kids = rep(0, n_samples)
+pref = runif(n_samples, .1, .7)
+max_kids = as.integer(pref*20)
+
+for (i in 1:n_samples){
+
+	p = c()
+
+	kids = 1
+	while (kids <= max_kids[i]){
+		p <- c(p, rbinom(1, 1, .5))
+		n_kids[i] = kids
+		prop_male[i] = mean(p)
+		if (prop_male[i] >= pref[i]){
+			break
+		}
+		kids = kids + 1
+	}
+}
+
+total_male_kids = sum(prop_male*n_kids)
+total_kids = sum(n_kids)
+mean = total_male_kids/total_kids
+print(mean)
+cor(prop_male, pref)
+lm(prop_male ~ pref)
+```
