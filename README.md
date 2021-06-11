@@ -11,4 +11,4 @@
 
 ### Script and Output
 
-* [prop_men.Rmd](prop_men.Rmd) and (prop_men.md)(prop_men.md)
+* [Script (Rmd)](prop_men.Rmd) and [Output (md)](prop_men.md)
