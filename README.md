@@ -1,8 +1,17 @@
-## How does stopping rule matter for sex ratio?
+## How does stopping rule matter for the sex ratio?
 
 1. Preference for male children, etc., doesn't affect the aggregate sex ratio
 
 Let there be n families and let the stopping rule be that after the birth of a male child, the family stops procreating. Let p be the probability a male child is born and q = 1 -p
+
+After 1 round:  p*n/n = p
+After 2 rounds: (p*n + q*p*n)/(n + qn) = (p + p*q)/(1 + q) = p(1 + q)/(1 + q)
+After 3 rounds: (p*n + q*p*n + q^2*p*n)/(n + qn + q^2n)
+                = (p + p*q + q^2*p)/(1 + q + q^2)
+                ...
+After k rounds: (p*n + q*p*n + q^2*p*n + ... + q^k*p*n)/(n + qn + q^2n + ... q^kn)
+
+After infinite rounds:  
 
 Total male children = p*n + q*p*n + q^2*p*n + ...
                     = p*n (1 + q + q^2 + ...)
@@ -14,6 +23,8 @@ Total children = n + q*n + q^2*n + ...
 
 Prop. Male     = np/(1 - q) * (1 - q)/n
                = p
+
+If it still seems like a counterintuitive result, here's one way to think: In each round, we get p*q^k successes and the total number of kids increases by q^k.  
 
 2. When families prefer male children but have similar preferences for family size, there is a strong negative correlation between the number of children and the proportion of male children.
 
