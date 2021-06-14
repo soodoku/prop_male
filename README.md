@@ -27,7 +27,7 @@ Total children $= n + qn + q^2n + \ldots$
 Prop. Male     $= \frac{np}{(1 - q)} * \frac{(1 - q)}{n}$
                $= p$
 
-If it still seems like a counterintuitive result, here's one way to think: In each round, we get p*q^k successes and the total number of kids increases by q^k.  
+If it still seems like a counterintuitive result, here's one way to think: In each round, we get $pq^k$ successes and the total number of kids increases by $q^k$.  
 
 2. When families prefer male children but have similar preferences for family size, there is a strong negative correlation between the number of children and the proportion of male children.
 
