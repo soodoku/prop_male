@@ -2,32 +2,32 @@
 
 1. Preference for male children, etc., doesn't affect the aggregate sex ratio
 
-Let there be $n$ families and let the stopping rule be that after the birth of a male child, the family stops procreating. Let $p$ be the probability a male child is born and $q = 1 -p$
+    Let there be $n$ families and let the stopping rule be that after the birth of a male child, the family stops procreating. Let $p$ be the probability a male child is born and $q = 1 -p$
 
-After 1 round:  $\frac{pn}{n} = p$
+    After 1 round:  $\frac{pn}{n} = p$
 
-After 2 rounds: $\frac{(pn + qpn)}{(n + qn)} = \frac{(p + pq)}{(1 + q)} = \frac{p(1 + q)}{(1 + q)}$
+    After 2 rounds: $\frac{(pn + qpn)}{(n + qn)} = \frac{(p + pq)}{(1 + q)} = \frac{p(1 + q)}{(1 + q)}$
 
-After 3 rounds: $\frac{(pn + qpn + q^2pn)}{(n + qn + q^2n)}$
-                $= \frac{(p + pq + q^2p)}{(1 + q + q^2)}$
-                
+    After 3 rounds: $\frac{(pn + qpn + q^2pn)}{(n + qn + q^2n)}$
+                    $= \frac{(p + pq + q^2p)}{(1 + q + q^2)}$
+                    
 
-After $k$ rounds: $\frac{(pn + qpn + q^2pn + ... + q^kpn)}{(n + qn + q^2n + \ldots q^kn)}$
+    After $k$ rounds: $\frac{(pn + qpn + q^2pn + ... + q^kpn)}{(n + qn + q^2n + \ldots q^kn)}$
 
-After infinite rounds:  
+    After infinite rounds:  
 
-Total male children $= pn + qpn + q^2pn + \ldots$
-                    $= pn (1 + q + q^2 + \ldots)$
-                    $= \frac{np}{(1 - q)}$
+    Total male children $= pn + qpn + q^2pn + \ldots$
+                        $= pn (1 + q + q^2 + \ldots)$
+                        $= \frac{np}{(1 - q)}$
 
-Total children $= n + qn + q^2n + \ldots$
-               $= n (1 + q + q^2 + \ldots)$
-               $= \frac{n}{(1 - q)}$
+    Total children $= n + qn + q^2n + \ldots$
+                   $= n (1 + q + q^2 + \ldots)$
+                   $= \frac{n}{(1 - q)}$
 
-Prop. Male     $= \frac{np}{(1 - q)} * \frac{(1 - q)}{n}$
-               $= p$
+    Prop. Male     $= \frac{np}{(1 - q)} * \frac{(1 - q)}{n}$
+                   $= p$
 
-If it still seems like a counterintuitive result, here's one way to think: In each round, we get $pq^k$ successes and the total number of kids increases by $q^k$.  
+    If it still seems like a counterintuitive result, here's one way to think: In each round, we get $pq^k$ successes and the total number of kids increases by $q^k$.  
 
 2. When families prefer male children but have similar preferences for family size, there is a strong negative correlation between the number of children and the proportion of male children.
 
