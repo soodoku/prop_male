@@ -4,7 +4,7 @@
 
 Let there be n families and let the stopping rule be that after the birth of a male child, the family stops procreating. Let p be the probability a male child is born and $q = 1 -p$
 
-After 1 round:  p*n/n = p
+After 1 round:  $p*n/n = p$
 
 After 2 rounds: (p*n + q*p*n)/(n + qn) = (p + p*q)/(1 + q) = p(1 + q)/(1 + q)
 
@@ -16,8 +16,8 @@ After k rounds: (p*n + q*p*n + q^2*p*n + ... + q^k*p*n)/(n + qn + q^2n + ... q^k
 
 After infinite rounds:  
 
-Total male children = $p*n + q*p*n + q^2*p*n + ...$
-                    = $p*n (1 + q + q^2 + ...)$
+Total male children = $p*n + q*p*n + q^2*p*n + \ldots$
+                    = $p*n (1 + q + q^2 + \ldots)$
                     = $\frac{np}{(1 - q)}$
 
 Total children = n + q*n + q^2*n + ...
