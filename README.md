@@ -1,4 +1,4 @@
-## How does stopping rule matter for the sex ratio?
+## How does the stopping rule matter for the sex ratio?
 
 1. Preference for male children, etc., doesn't affect the aggregate sex ratio
 
