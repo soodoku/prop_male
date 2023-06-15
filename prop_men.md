@@ -282,3 +282,131 @@ cor(max_kids, prop_male)
 ```
 
     ## [1] 0.08346871
+
+## Let’s try to explain how you can get diff. sex ratio with essentialy the same prop_male.
+
+sex ratio issues will come from sex selective abortion.
+
+Let’s induce a correlation b/w preferred max size of family and sex
+selective abortion.
+
+I am going to simulate out when sex selective abortion is practiced
+after 3 or 4 0s
+
+``` r
+n_samples = 10^6
+prop_male = rep(0, n_samples)
+n_kids = rep(0, n_samples)
+max_kids = sample.int(5, n_samples, replace = TRUE) # random pref. for family size
+# stopping rule is if i have 1 male kid
+n_male = rep(0, n_samples)
+n_sex_selective_families <- rep(0, n_samples)
+
+for (i in 1:n_samples){
+
+    children = c()
+
+    kids = 1
+    while (kids <= max_kids[i]){
+      if ((kids == 3) && (prop_male[i] == 0)){
+        child = 1
+        n_sex_selective_families[i] = 1
+      }
+      else{
+        child = rbinom(1, 1, .5)
+      }
+      children <- c(child, children)
+      n_kids[i] = kids
+      kids = kids + 1
+      if (child == 1) {
+        break
+      }
+        
+    }
+    prop_male[i] = mean(children)
+    n_male[i] = sum(children)
+}
+
+total_male_kids = sum(prop_male*n_kids)
+total_kids = sum(n_kids)
+total_male_kids/(total_kids - total_male_kids)
+```
+
+    ## [1] 1.216402
+
+``` r
+cor(prop_male*n_kids, n_kids)
+```
+
+    ## [1] 0.1216364
+
+``` r
+mean(prop_male)
+```
+
+    ## [1] 0.6505358
+
+``` r
+mean(n_sex_selective_families)
+```
+
+    ## [1] 0.149473
+
+``` r
+n_samples = 10^6
+prop_male = rep(0, n_samples)
+n_kids = rep(0, n_samples)
+max_kids = sample.int(5, n_samples, replace = TRUE) # random pref. for family size
+# stopping rule is if i have 1 male kid
+n_male = rep(0, n_samples)
+n_sex_selective_families <- rep(0, n_samples)
+
+for (i in 1:n_samples){
+
+    children = c()
+
+    kids = 1
+    while (kids <= max_kids[i]){
+      if ((kids == 4) && (prop_male[i] == 0)){
+        child = 1
+        n_sex_selective_families[i] = 1
+      }
+      else{
+        child = rbinom(1, 1, .5)
+      }
+      children <- c(child, children)
+      n_kids[i] = kids
+      kids = kids + 1
+      if (child == 1) {
+        break
+      }
+        
+    }
+    prop_male[i] = mean(children)
+    n_male[i] = sum(children)
+}
+
+total_male_kids = sum(prop_male*n_kids)
+total_kids = sum(n_kids)
+total_male_kids/(total_kids - total_male_kids)
+```
+
+    ## [1] 1.061399
+
+``` r
+cor(prop_male*n_kids, n_kids)
+```
+
+    ## [1] 0.01605229
+
+``` r
+mean(prop_male)
+```
+
+    ## [1] 0.6367744
+
+``` r
+mean(n_sex_selective_families)
+```
+
+    ## [1] 0.050235
