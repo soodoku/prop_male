@@ -52,6 +52,19 @@ mean(prop_male)
 
     ## [1] 0.6897983
 
+``` r
+### average family size in which there is a girl vs. not
+mean(n_kids[n_male == 0])
+```
+
+    ## [1] 5
+
+``` r
+mean(n_kids[n_male > 0])
+```
+
+    ## [1] 1.831666
+
 # Stopping Rule = When I have 60% male kids or 3 kids
 
 ``` r
