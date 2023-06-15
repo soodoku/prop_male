@@ -5,6 +5,43 @@ date: "June 10, 2021"
 output: github_document
 ---
 
+# Stopping Rule = 5 kids or if I have 1 male baby
+
+```{r}
+set.seed(31415)
+
+n_samples = 10^4
+prop_male = rep(NA, n_samples)
+n_kids = rep(0, n_samples)
+max_kids = 5 # pref. for max family size
+# stopping rule is if i have 1 male kid
+n_male = rep(0, n_samples)
+
+for (i in 1:n_samples){
+
+    children = c()
+
+    kids = 1
+    while (kids <= max_kids){
+    	child = rbinom(1, 1, .5)
+        children <- c(child, children)
+        n_kids[i] = kids
+        kids = kids + 1
+        if (child == 1) {
+        	break
+       }
+    }
+    prop_male[i] = mean(children)
+    n_male[i] = sum(children)
+}
+
+total_male_kids = sum(prop_male*n_kids)
+total_kids = sum(n_kids)
+total_male_kids/total_kids
+cor(prop_male*n_kids, n_kids)
+mean(prop_male)
+```
+
 # Stopping Rule = When I have 60% male kids or 3 kids
 
 ```{r}
