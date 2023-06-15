@@ -410,3 +410,16 @@ mean(n_sex_selective_families)
 ```
 
     ## [1] 0.050235
+
+Let’s also do boot s.e. of the sex ratio to show how much it can vary if
+the underlying data points are say 500
+
+``` r
+n_female = n_kids - n_male
+
+# Calculate the bootstrapped standard error of the sex ratio
+sd(replicate(1000, 
+        sum(sample(n_male[1:500], length(n_male[1:500]), replace = TRUE)) / sum(sample(n_female[1:500], length(n_female[1:500]), replace = TRUE))))
+```
+
+    ## [1] 0.05845279
