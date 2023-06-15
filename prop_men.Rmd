@@ -40,6 +40,10 @@ total_kids = sum(n_kids)
 total_male_kids/total_kids
 cor(prop_male*n_kids, n_kids)
 mean(prop_male)
+
+### average family size in which there is a girl vs. not
+mean(n_kids[n_male == 0])
+mean(n_kids[n_male > 0])
 ```
 
 # Stopping Rule = When I have 60% male kids or 3 kids
